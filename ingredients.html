@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients - Farm Robot Management</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Primary Navigation -->
+    <nav class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a class="text-xl font-semibold" href="index.html">Farm Robot</a>
+                    <div class="hidden sm:block ml-4 space-x-2">
+                        <a class="hover:text-gray-300" href="#">Farms</a>
+                        <span>&gt;</span>
+                        <a class="hover:text-gray-300" href="#">Demo Farm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Secondary Navigation -->
+    <div class="hidden md:block bg-white border-b">
+        <div class="container mx-auto">
+            <div class="flex space-x-8 h-16">
+                <a href="index.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Overview
+                </a>
+                <a href="locations.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Locations
+                </a>
+                <a href="recipes.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium text-gray-900">
+                    Recipes
+                </a>
+                <a href="groups.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Groups
+                </a>
+                <a href="schedules.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Schedules
+                </a>
+                <a href="monitoring.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Monitoring
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 pt-6 pb-24">
+        <!-- Page Header -->
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">Ingredients</h1>
+                <p class="mt-1 text-sm text-gray-500">Manage ingredients for feed recipes</p>
+            </div>
+            <div class="flex space-x-3">
+                <a href="recipes.html" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                    Back to Recipes
+                </a>
+                <button onclick="showIngredientForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    Add New Ingredient
+                </button>
+            </div>
+        </div>
+
+        <!-- Ingredients List -->
+        <div class="bg-white rounded-lg shadow">
+            <div class="p-6">
+                <div class="space-y-4">
+                    <!-- Hay -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium text-gray-900">Hay</h3>
+                            <p class="text-sm text-gray-500">Unit: Kilograms</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('hay')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('hay')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grain Mix -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium text-gray-900">Grain Mix</h3>
+                            <p class="text-sm text-gray-500">Unit: Kilograms</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('grain')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('grain')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mineral Supplement -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium text-gray-900">Mineral Supplement</h3>
+                            <p class="text-sm text-gray-500">Unit: Kilograms</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('mineral')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('mineral')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Protein Supplement -->
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-medium text-gray-900">Protein Supplement</h3>
+                            <p class="text-sm text-gray-500">Unit: Kilograms</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('protein')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('protein')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add/Edit Ingredient Modal -->
+        <div id="ingredientModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+            <div class="flex items-center justify-center min-h-screen px-4">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 id="modalTitle" class="text-xl font-semibold">Add New Ingredient</h2>
+                            <button onclick="hideIngredientForm()" class="text-gray-400 hover:text-gray-600">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <form id="ingredientForm" class="space-y-4">
+                            <input type="hidden" name="ingredientId" id="ingredientId">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Ingredient Name</label>
+                                <input type="text" name="ingredientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Unit of Measurement</label>
+                                <select name="unit" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                    <option value="kg">Kilograms</option>
+                                    <option value="l">Liters</option>
+                                </select>
+                            </div>
+                            <div class="flex justify-end space-x-3 mt-6">
+                                <button type="button" onclick="hideIngredientForm()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                    Save Ingredient
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+            <div class="flex items-center justify-center min-h-screen px-4">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+                    <div class="p-6">
+                        <div class="mb-4">
+                            <h2 class="text-xl font-semibold text-gray-900">Confirm Delete</h2>
+                            <p class="mt-2 text-sm text-gray-500">Are you sure you want to delete this ingredient? This action cannot be undone.</p>
+                        </div>
+                        <div class="flex justify-end space-x-3">
+                            <button onclick="hideDeleteModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                Cancel
+                            </button>
+                            <button onclick="confirmDelete()" class="px-4 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 lg:hidden">
+        <nav class="grid grid-cols-6 gap-1 p-2">
+            <a href="index.html" class="flex flex-col items-center p-2 text-gray-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span class="text-xs">Overview</span>
+            </a>
+            <a href="locations.html" class="flex flex-col items-center p-2 text-gray-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                </svg>
+                <span class="text-xs">Locations</span>
+            </a>
+            <a href="recipes.html" class="flex flex-col items-center p-2 text-blue-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                </svg>
+                <span class="text-xs">Recipes</span>
+            </a>
+            <a href="groups.html" class="flex flex-col items-center p-2 text-gray-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <span class="text-xs">Groups</span>
+            </a>
+            <a href="schedules.html" class="flex flex-col items-center p-2 text-gray-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-xs">Schedule</span>
+            </a>
+            <a href="monitoring.html" class="flex flex-col items-center p-2 text-gray-600">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <span class="text-xs">Monitor</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        let currentIngredientId = null;
+
+        function showIngredientForm(isEdit = false) {
+            document.getElementById('modalTitle').textContent = isEdit ? 'Edit Ingredient' : 'Add New Ingredient';
+            document.getElementById('ingredientModal').classList.remove('hidden');
+        }
+
+        function hideIngredientForm() {
+            document.getElementById('ingredientModal').classList.add('hidden');
+            document.getElementById('ingredientForm').reset();
+            currentIngredientId = null;
+        }
+
+        function editIngredient(ingredientId) {
+            currentIngredientId = ingredientId;
+            // Here you would normally fetch the ingredient data and populate the form
+            document.getElementById('ingredientId').value = ingredientId;
+            showIngredientForm(true);
+        }
+
+        function deleteIngredient(ingredientId) {
+            currentIngredientId = ingredientId;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function hideDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+            currentIngredientId = null;
+        }
+
+        function confirmDelete() {
+            if (currentIngredientId) {
+                console.log('Deleting ingredient:', currentIngredientId);
+                // Here you would normally send a delete request to your backend
+                showNotification('Ingredient deleted successfully');
+                hideDeleteModal();
+            }
+        }
+
+        document.getElementById('ingredientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {
+                id: formData.get('ingredientId'),
+                name: formData.get('ingredientName'),
+                unit: formData.get('unit')
+            };
+            console.log('Ingredient Data:', data);
+            hideIngredientForm();
+            showNotification(currentIngredientId ? 'Ingredient updated successfully' : 'Ingredient created successfully');
+        });
+    </script>
+</body>
+</html> 
