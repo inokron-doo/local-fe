@@ -205,76 +205,93 @@
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
 
-    <!-- Add/Edit Location Form Modal -->
-    <div id="locationModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
-        <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 id="modalTitle" class="text-xl font-semibold">Add New Location</h2>
-                        <button onclick="hideLocationForm()" class="text-gray-400 hover:text-gray-600">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                    </div>
+    <!-- Add/Edit Location Modal -->
+    <div id="locationModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+            <h2 id="modalTitle" class="text-xl font-semibold mb-4">Add New Location</h2>
 
-                    <!-- Setup Instructions -->
-                    <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                        <h3 class="font-medium text-blue-800 mb-2">Location Setup Process:</h3>
-                        <ol class="list-decimal list-inside text-blue-700 space-y-1">
-                            <li>Move the robot to the desired location using onboard controls</li>
-                            <li>Click "Get Location from Robot" to retrieve the position</li>
-                            <li>Name the location and set its properties</li>
-                            <li>Save to add this point to your farm layout</li>
-                        </ol>
+            <!-- Setup Instructions -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <div class="flex space-x-3">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-blue-800 mb-1">Setting Up a Location</h3>
+                        <p class="text-sm text-blue-700">1. Move the robot to the starting position of the feeding area<br>2. Click "Get Starting Position" to record it<br>3. Move the robot to the end of the feeding area<br>4. Click "Get Ending Position" to complete the path</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="locationForm">
+                <input type="hidden" id="locationId" name="locationId">
+                <div class="space-y-4">
+                    <div>
+                        <label for="locationName" class="block text-sm font-medium text-gray-700">Location Name</label>
+                        <input type="text" id="locationName" name="locationName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                     </div>
 
                     <!-- Robot Status -->
-                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <div id="robotStatusIndicator" class="h-3 w-3 bg-green-500 rounded-full"></div>
-                                <span id="robotStatusText" class="text-sm font-medium">Robot Ready</span>
-                            </div>
-                            <div class="text-sm text-gray-500">
-                                Distance from previous: <span id="distanceFromPrevious" class="font-medium">0</span> meters
-                            </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-gray-700">Robot Status:</span>
+                            <span id="robotStatus" class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Ready</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            Distance from previous location: <span id="distanceValue" class="font-medium">0</span> meters
                         </div>
                     </div>
 
-                    <form id="locationForm" class="space-y-4">
-                        <input type="hidden" name="locationId" id="locationId">
-                        <input type="hidden" name="distanceFromPrevious" id="distanceInput">
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Location Name</label>
-                                <input type="text" name="locationName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    <!-- Position Controls -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Starting Position</label>
+                            <div class="flex space-x-2">
+                                <button type="button" onclick="getStartPosition()" class="flex-1 inline-flex justify-center items-center px-4 py-2 border border-blue-600 rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Get Starting Position
+                                </button>
                             </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Feeding Side</label>
-                                <select name="feedingSide" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="left">Left</option>
-                                    <option value="right">Right</option>
-                                </select>
-                            </div>
+                            <div id="startPositionStatus" class="mt-1 text-sm text-gray-500">Not set</div>
                         </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ending Position</label>
+                            <div class="flex space-x-2">
+                                <button type="button" onclick="getEndPosition()" class="flex-1 inline-flex justify-center items-center px-4 py-2 border border-blue-600 rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <svg class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    Get Ending Position
+                                </button>
+                            </div>
+                            <div id="endPositionStatus" class="mt-1 text-sm text-gray-500">Not set</div>
+                        </div>
+                    </div>
 
-                        <div class="flex justify-end space-x-3 mt-6">
-                            <button type="button" onclick="hideLocationForm()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                Cancel
-                            </button>
-                            <button type="button" id="getRobotLocationBtn" onclick="retrieveLocationFromRobot()" class="px-4 py-2 bg-green-500 text-white rounded-md text-sm font-medium hover:bg-green-600">
-                                Get Location from Robot
-                            </button>
-                            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
-                                Save Location
-                            </button>
-                        </div>
-                    </form>
+                    <div>
+                        <label for="feedingSide" class="block text-sm font-medium text-gray-700">Feeding Side</label>
+                        <select id="feedingSide" name="feedingSide" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="hideLocationForm()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
+                        Save Location
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -311,7 +328,6 @@
 
         function showLocationForm(isEdit = false) {
             document.getElementById('modalTitle').textContent = isEdit ? 'Edit Location' : 'Add New Location';
-            document.getElementById('getRobotLocationBtn').style.display = isEdit ? 'none' : 'block';
             document.getElementById('locationModal').classList.remove('hidden');
             updateLocationPath();
         }
@@ -319,8 +335,8 @@
         function hideLocationForm() {
             document.getElementById('locationModal').classList.add('hidden');
             document.getElementById('locationForm').reset();
-            document.getElementById('robotStatusIndicator').classList.replace('bg-yellow-500', 'bg-green-500');
-            document.getElementById('robotStatusText').textContent = 'Robot Ready';
+            document.getElementById('robotStatus').textContent = 'Ready';
+            document.getElementById('distanceValue').textContent = '0';
             currentLocationId = null;
         }
 
@@ -350,24 +366,22 @@
             }
         }
 
-        function retrieveLocationFromRobot() {
-            // Update UI to show we're getting location
-            document.getElementById('robotStatusIndicator').classList.replace('bg-green-500', 'bg-yellow-500');
-            document.getElementById('robotStatusText').textContent = 'Getting Location...';
-            
-            // Simulate getting location from robot
-            setTimeout(() => {
-                // In reality, this would come from the robot
-                const mockDistance = Math.round(Math.random() * 100) / 10;
-                document.getElementById('distanceFromPrevious').textContent = mockDistance;
-                document.getElementById('distanceInput').value = mockDistance;
-                
-                // Update status
-                document.getElementById('robotStatusIndicator').classList.replace('bg-yellow-500', 'bg-green-500');
-                document.getElementById('robotStatusText').textContent = 'Location Retrieved';
-                
-                updateLocationPath();
-            }, 1500);
+        function getStartPosition() {
+            // Simulate getting position from robot
+            document.getElementById('startPositionStatus').textContent = 'Position recorded';
+            document.getElementById('startPositionStatus').className = 'mt-1 text-sm text-green-600';
+            document.getElementById('robotStatus').textContent = 'Position Recorded';
+            document.getElementById('distanceValue').textContent = '0';
+            showNotification('Starting position recorded successfully');
+        }
+
+        function getEndPosition() {
+            // Simulate getting position from robot
+            document.getElementById('endPositionStatus').textContent = 'Position recorded';
+            document.getElementById('endPositionStatus').className = 'mt-1 text-sm text-green-600';
+            document.getElementById('robotStatus').textContent = 'Path Complete';
+            document.getElementById('distanceValue').textContent = '12.5';
+            showNotification('Ending position recorded successfully');
         }
 
         function updateLocationPath() {
@@ -406,7 +420,7 @@
                 id: formData.get('locationId'),
                 name: formData.get('locationName'),
                 feedingSide: formData.get('feedingSide'),
-                distance: parseFloat(formData.get('distanceFromPrevious')) || 0
+                distance: parseFloat(formData.get('distanceValue')) || 0
             };
 
             // Add to locations array
