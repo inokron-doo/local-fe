@@ -60,7 +60,7 @@ We use GitHub Projects to track suggestions, improvements, and bug reports. Your
 
 ### How to Submit Feedback
 
-1. Go to our [Project Board](https://github.com/inokron/demo-frontend/projects)
+1. Go to our [Project Board](https://github.com/orgs/inokron-doo/projects/3)
 2. Click on "Add Item" (+ button)
 3. Choose the appropriate template:
    - 🐛 Bug Report - for reporting issues
