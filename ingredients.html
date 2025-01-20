@@ -90,11 +90,10 @@
                         <h2 class="text-lg font-semibold text-gray-900">Corn Silage</h2>
                         <div class="mt-2 space-y-2">
                             <div class="text-sm text-gray-500">
-                                Storage Bin 1 • 15,000 kg available
+                                Dispenser 1 • 15,000 kg available
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
-                                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">Primary</span>
                             </div>
                         </div>
                     </div>
@@ -116,7 +115,7 @@
                         <h2 class="text-lg font-semibold text-gray-900">Hay</h2>
                         <div class="mt-2 space-y-2">
                             <div class="text-sm text-gray-500">
-                                Storage Bin 2 • 8,000 kg available
+                                Dispenser 2 • 8,000 kg available
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
@@ -142,11 +141,10 @@
                         <h2 class="text-lg font-semibold text-gray-900">Grain Mix</h2>
                         <div class="mt-2 space-y-2">
                             <div class="text-sm text-gray-500">
-                                Storage Bin 3 • 5,000 kg available
+                                Dispenser 3 • 5,000 kg available
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
-                                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">Supplement</span>
                             </div>
                         </div>
                     </div>
@@ -210,24 +208,26 @@
                             <input type="text" name="ingredientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Storage Bin</label>
+                            <label class="block text-sm font-medium text-gray-700">Dispenser</label>
                             <select name="storageBin" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <option value="1">Storage Bin 1</option>
-                                <option value="2">Storage Bin 2</option>
-                                <option value="3">Storage Bin 3</option>
-                                <option value="4">Storage Bin 4</option>
+                                <option value="">Select dispenser number</option>
+                                <option value="1">Dispenser 1</option>
+                                <option value="2">Dispenser 2</option>
+                                <option value="3">Dispenser 3</option>
+                                <option value="4">Dispenser 4</option>
+                                <option value="5">Dispenser 5</option>
+                                <option value="6">Dispenser 6</option>
+                                <option value="7">Dispenser 7</option>
+                                <option value="8">Dispenser 8</option>
+                                <option value="9">Dispenser 9</option>
+                                <option value="10">Dispenser 10</option>
+                                <option value="11">Dispenser 11</option>
+                                <option value="12">Dispenser 12</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Available Amount (kg)</label>
                             <input type="number" name="amount" required min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Type</label>
-                            <select name="type" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <option value="primary">Primary</option>
-                                <option value="supplement">Supplement</option>
-                            </select>
                         </div>
                         <div class="flex justify-end space-x-3 mt-6">
                             <button type="button" onclick="hideIngredientForm()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
