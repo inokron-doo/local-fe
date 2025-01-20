@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Robot Management - Demo</title>
+    <title>Dashboard - Farm Robot Management</title>
     
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="img/icon.png" type="image/png">
 </head>
 <body class="bg-gray-100 min-h-screen">
     <!-- Primary Navigation -->
@@ -48,43 +45,14 @@
         <div class="container mx-auto">
             <div class="flex space-x-8 h-16">
                 <a href="index.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium text-gray-900">
-                    Overview
+                    Dashboard
                 </a>
-                <a href="locations.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Locations
+                <a href="settings.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Settings
                 </a>
-                <a href="recipes.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Recipes
+                <a href="setup.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Setup
                 </a>
-                <a href="groups.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Groups
-                </a>
-                <a href="schedules.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Schedules
-                </a>
-                <a href="monitoring.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Monitoring
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile Quick Stats -->
-    <div class="lg:hidden bg-white border-b">
-        <div class="container mx-auto px-4 py-4">
-            <div class="grid grid-cols-3 gap-4 text-center">
-                <div>
-                    <div class="text-2xl font-semibold text-blue-600">4</div>
-                    <div class="text-xs text-gray-500">Groups</div>
-                </div>
-                <div>
-                    <div class="text-2xl font-semibold text-green-600">FEEDING_GROUP1</div>
-                    <div class="text-xs text-gray-500">Current State</div>
-                </div>
-                <div>
-                    <div class="text-2xl font-semibold text-gray-900">6:00</div>
-                    <div class="text-xs text-gray-500">Next Run</div>
-                </div>
             </div>
         </div>
     </div>
@@ -92,143 +60,97 @@
     <!-- Main Content Area -->
     <main class="container mx-auto px-4 pt-6 pb-24">
         <!-- Dashboard Content -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Main Stats -->
-            <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Robot Status -->
-                <div class="bg-white rounded-lg shadow p-6 mb-6">
-                    <h2 class="text-lg font-semibold mb-4">Robot Status</h2>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-medium text-gray-900">Farm Robot #1</h3>
-                                <div class="mt-1">
-                                    <span class="px-2 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">FEEDING_GROUP1</span>
-                                </div>
-                                <div class="mt-2 text-sm text-gray-500">
-                                    <p>Current Location: Section A</p>
-                                    <p>Current Task: Feeding Dairy Cows</p>
-                                    <p>Next Task: Move to Section B</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Active Groups -->
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-semibold">Active Groups</h2>
-                        <button class="text-sm text-blue-600 hover:text-blue-800">View All</button>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Dairy Cows</h3>
-                                    <p class="text-sm text-gray-500">50 animals • Section A • Next Feed: 14:00</p>
-                                </div>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Fed</span>
-                        </div>
-
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Bulls</h3>
-                                    <p class="text-sm text-gray-500">20 animals • Section B • Next Feed: 15:00</p>
-                                </div>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Upcoming</span>
-                        </div>
-
-                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Young Stock</h3>
-                                    <p class="text-sm text-gray-500">30 animals • Section C • Next Feed: 19:00</p>
-                                </div>
-                            </div>
-                            <span class="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">Scheduled</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="grid grid-cols-1 gap-6">
             <!-- Quick Actions -->
             <div class="bg-white rounded-lg shadow p-6">
-                <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-                <div class="space-y-4">
-                    <a href="groups.html" class="block w-full bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 transition-colors text-center">
-                        Create New Group
-                    </a>
-                    <a href="recipes.html" class="block w-full bg-gray-100 text-gray-700 rounded-lg px-4 py-2 hover:bg-gray-200 transition-colors text-center">
-                        Add New Recipe
-                    </a>
-                    <a href="recipes.html" class="block w-full bg-gray-100 text-gray-700 rounded-lg px-4 py-2 hover:bg-gray-200 transition-colors text-center">
-                        Manage Ingredients
-                    </a>
-                    <a href="schedules.html" class="block w-full bg-gray-100 text-gray-700 rounded-lg px-4 py-2 hover:bg-gray-200 transition-colors text-center">
-                        Create Schedule
-                    </a>
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
+                <div class="grid grid-cols-3 gap-4">
+                    <button onclick="showRepeatCycleModal()" class="flex flex-col items-center justify-center px-6 py-6 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+                        <svg class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        <span class="text-xl font-medium">Repeat Cycle</span>
+                    </button>
+                    <button onclick="pauseRobot()" class="flex flex-col items-center justify-center px-6 py-6 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                        <svg class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-xl font-medium">Pause Robot</span>
+                    </button>
+                    <button onclick="resumeRobot()" class="flex flex-col items-center justify-center px-6 py-6 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <svg class="h-10 w-10 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-xl font-medium">Resume Robot</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- Robot States Legend -->
-            <div class="lg:col-span-3 bg-white rounded-lg shadow p-6">
-                <h3 class="text-lg font-semibold mb-4">Robot States</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Status Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Robot Status -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-medium mb-4">Robot Status</h3>
                     <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-gray-200 rounded-full"></div>
-                        <span class="text-sm">IDLE</span>
+                        <div class="h-3 w-3 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-600">Online - Idle</span>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span class="text-sm">MOVING_TO_FEED</span>
+                </div>
+
+                <!-- Next Feed -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-medium mb-2">Next Feed</h3>
+                    <p class="text-gray-600">Group A - 14:30</p>
+                </div>
+
+                <!-- Feed Progress -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-medium mb-2">Today's Progress</h3>
+                    <div class="relative pt-1">
+                        <div class="flex mb-2 items-center justify-between">
+                            <div>
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                                    Progress
+                                </span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs font-semibold inline-block text-blue-600">
+                                    60%
+                                </span>
+                            </div>
+                        </div>
+                        <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+                            <div style="width:60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                        </div>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <span class="text-sm">LOADING_FEED</span>
+                </div>
+            </div>
+
+            <!-- Schedule Overview -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-semibold mb-4">Today's Schedule</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium">Morning Feed</h4>
+                            <p class="text-sm text-gray-600">Group A, B, C</p>
+                        </div>
+                        <span class="px-3 py-1 text-sm text-green-700 bg-green-100 rounded-full">Completed</span>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span class="text-sm">FEEDING_GROUP1</span>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium">Afternoon Feed</h4>
+                            <p class="text-sm text-gray-600">Group A, B</p>
+                        </div>
+                        <span class="px-3 py-1 text-sm text-blue-700 bg-blue-100 rounded-full">Next Up</span>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-green-400 rounded-full"></div>
-                        <span class="text-sm">FEEDING_GROUP2</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-green-300 rounded-full"></div>
-                        <span class="text-sm">FEEDING_GROUP3</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-green-200 rounded-full"></div>
-                        <span class="text-sm">FEEDING_GROUP4</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
-                        <span class="text-sm">RETURNING_TO_BASE</span>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium">Evening Feed</h4>
+                            <p class="text-sm text-gray-600">Group A, B, C</p>
+                        </div>
+                        <span class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-full">Scheduled</span>
                     </div>
                 </div>
             </div>
@@ -237,47 +159,154 @@
 
     <!-- Mobile Navigation -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 lg:hidden">
-        <nav class="grid grid-cols-6 gap-1 p-2">
+        <nav class="grid grid-cols-3 gap-1 p-2">
             <a href="index.html" class="flex flex-col items-center p-2 text-blue-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
-                <span class="text-xs">Overview</span>
+                <span class="text-xs">Dashboard</span>
             </a>
-            <a href="locations.html" class="flex flex-col items-center p-2 text-gray-600">
+            <a href="settings.html" class="flex flex-col items-center p-2 text-gray-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                 </svg>
-                <span class="text-xs">Locations</span>
+                <span class="text-xs">Settings</span>
             </a>
-            <a href="recipes.html" class="flex flex-col items-center p-2 text-gray-600">
+            <a href="setup.html" class="flex flex-col items-center p-2 text-gray-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
                 </svg>
-                <span class="text-xs">Recipes</span>
-            </a>
-            <a href="groups.html" class="flex flex-col items-center p-2 text-gray-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-                <span class="text-xs">Groups</span>
-            </a>
-            <a href="schedules.html" class="flex flex-col items-center p-2 text-gray-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <span class="text-xs">Schedule</span>
-            </a>
-            <a href="monitoring.html" class="flex flex-col items-center p-2 text-gray-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                </svg>
-                <span class="text-xs">Monitor</span>
+                <span class="text-xs">Setup</span>
             </a>
         </nav>
     </div>
 
+    <!-- Repeat Cycle Modal -->
+    <div id="repeatCycleModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+            <h2 class="text-xl font-semibold mb-4">Repeat Cycle</h2>
+            <form id="repeatCycleForm">
+                <div class="space-y-4">
+                    <div>
+                        <label for="cycleSelect" class="block text-sm font-medium text-gray-700 mb-2">Select Cycle</label>
+                        <select id="cycleSelect" name="cycleSelect" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="morning">Morning Feed (6:00 AM)</option>
+                            <option value="afternoon">Afternoon Feed (2:00 PM)</option>
+                            <option value="evening">Evening Feed (8:00 PM)</option>
+                            <option value="pushing-1">Feed Pushing (10:00 AM)</option>
+                            <option value="pushing-2">Feed Pushing (4:00 PM)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Amount to Repeat</label>
+                        <div class="grid grid-cols-4 gap-4">
+                            <label class="flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="amount" value="25" class="sr-only">
+                                <span class="text-lg font-medium text-gray-900">25%</span>
+                            </label>
+                            <label class="flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="amount" value="50" class="sr-only">
+                                <span class="text-lg font-medium text-gray-900">50%</span>
+                            </label>
+                            <label class="flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="amount" value="75" class="sr-only">
+                                <span class="text-lg font-medium text-gray-900">75%</span>
+                            </label>
+                            <label class="flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="amount" value="100" class="sr-only">
+                                <span class="text-lg font-medium text-gray-900">100%</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="hideRepeatCycleModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
+                        Repeat Cycle
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
+
+    <script>
+        function showRepeatCycleModal() {
+            document.getElementById('repeatCycleModal').classList.remove('hidden');
+            
+            // Add selected state styling for amount options
+            const amountLabels = document.querySelectorAll('input[name="amount"]');
+            amountLabels.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove selected state from all labels
+                    document.querySelectorAll('input[name="amount"]').forEach(r => {
+                        r.parentElement.classList.remove('bg-blue-50', 'border-blue-500');
+                    });
+                    // Add selected state to checked label
+                    if (this.checked) {
+                        this.parentElement.classList.add('bg-blue-50', 'border-blue-500');
+                    }
+                });
+            });
+        }
+
+        function hideRepeatCycleModal() {
+            document.getElementById('repeatCycleModal').classList.add('hidden');
+            document.getElementById('repeatCycleForm').reset();
+            // Remove selected state from all amount options
+            document.querySelectorAll('input[name="amount"]').forEach(radio => {
+                radio.parentElement.classList.remove('bg-blue-50', 'border-blue-500');
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-0 right-0 m-6 p-4 bg-gray-900 text-white rounded-lg shadow-lg';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        document.getElementById('repeatCycleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const cycle = formData.get('cycleSelect');
+            const amount = formData.get('amount');
+
+            if (!amount) {
+                alert('Please select an amount');
+                return;
+            }
+
+            const data = {
+                cycle: cycle,
+                amount: amount
+            };
+            console.log('Repeating cycle:', data);
+            hideRepeatCycleModal();
+            showNotification(`Starting ${cycle} cycle at ${amount}%`);
+        });
+
+        function pauseRobot() {
+            const statusText = document.querySelector('.text-gray-600');
+            statusText.textContent = 'Online - Paused';
+            console.log('Robot paused');
+            showNotification('Robot paused');
+        }
+
+        function resumeRobot() {
+            const statusText = document.querySelector('.text-gray-600');
+            statusText.textContent = 'Online - Idle';
+            console.log('Robot resumed');
+            showNotification('Robot resumed');
+        }
+    </script>
 </body>
 </html> 

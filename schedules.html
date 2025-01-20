@@ -45,22 +45,30 @@
         <div class="container mx-auto">
             <div class="flex space-x-8 h-16">
                 <a href="index.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Overview
+                    Dashboard
                 </a>
-                <a href="locations.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Locations
+                <a href="settings.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium text-gray-900">
+                    Settings
                 </a>
+                <a href="setup.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Setup
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Submenu -->
+    <div class="hidden md:block bg-gray-100 border-b">
+        <div class="container mx-auto">
+            <div class="flex space-x-8 h-16">
                 <a href="recipes.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
                     Recipes
-                </a>
-                <a href="groups.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Groups
                 </a>
                 <a href="schedules.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-blue-500 text-sm font-medium text-gray-900">
                     Schedules
                 </a>
-                <a href="monitoring.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-                    Monitoring
+                <a href="groups.html" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                    Groups
                 </a>
             </div>
         </div>
@@ -68,301 +76,90 @@
 
     <!-- Main Content Area -->
     <main class="container mx-auto px-4 pt-6 pb-24">
-        <!-- Schedule Header -->
+        <!-- Schedules Header -->
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-900">Feeding Schedule</h1>
+            <h1 class="text-2xl font-bold text-gray-900">Feeding Schedules</h1>
             <button onclick="showScheduleForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
                 Add New Schedule
             </button>
         </div>
 
-        <!-- Schedule List -->
-        <div class="bg-white rounded-lg shadow">
-            <div class="p-6">
-                <div class="space-y-4">
-                    <!-- 6:00 Schedule -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">06:00</span>
+        <!-- Schedules List -->
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Morning Schedule -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <h2 class="text-lg font-semibold text-gray-900">Morning Feed</h2>
+                        <div class="mt-2 space-y-2">
+                            <div class="text-sm text-gray-500">
+                                Daily at 6:00 AM • Morning Mix
                             </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">Dairy Cows</h3>
-                                <p class="text-sm text-gray-500">50 animals • Morning Mix • Section A</p>
-                                <p class="text-sm text-gray-500">Daily</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span>
+                                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">All Groups</span>
                             </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('morning-dairy')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('morning-dairy')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
                         </div>
                     </div>
-
-                    <!-- 8:30 Feed Push -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border-l-4 border-green-500">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">08:30</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">Dairy Cows</h3>
-                                <p class="text-sm text-gray-500">Feed Pushing • Section A</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('push-dairy-morning')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('push-dairy-morning')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 7:00 Schedule -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">07:00</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">Bulls</h3>
-                                <p class="text-sm text-gray-500">20 animals • Morning Mix • Section B</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('morning-bulls')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('morning-bulls')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 14:00 Schedule -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">14:00</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">Dairy Cows</h3>
-                                <p class="text-sm text-gray-500">50 animals • Afternoon Mix • Section A</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('afternoon-dairy')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('afternoon-dairy')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 15:00 Schedule -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">15:00</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">Young Stock</h3>
-                                <p class="text-sm text-gray-500">30 animals • Afternoon Mix • Section C</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('afternoon-young')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('afternoon-young')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 16:30 Feed Push -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border-l-4 border-green-500">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">16:30</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">All Groups</h3>
-                                <p class="text-sm text-gray-500">Feed Pushing • All Sections</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('push-all-afternoon')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('push-all-afternoon')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- 19:00 Schedule -->
-                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-16 text-center">
-                                <span class="text-lg font-semibold text-gray-900">19:00</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-900">All Groups</h3>
-                                <p class="text-sm text-gray-500">100 animals • Evening Mix • All Sections</p>
-                                <p class="text-sm text-gray-500">Daily</p>
-                            </div>
-                        </div>
-                        <div class="flex space-x-3">
-                            <button onclick="editSchedule('evening-all')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                                Edit
-                            </button>
-                            <button onclick="deleteSchedule('evening-all')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                                Delete
-                            </button>
-                        </div>
+                    <div class="flex space-x-3">
+                        <button onclick="editSchedule('morning-feed')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                            Edit
+                        </button>
+                        <button onclick="deleteSchedule('morning-feed')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Add/Edit Schedule Modal -->
-        <div id="scheduleModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
-            <div class="flex items-center justify-center min-h-screen px-4">
-                <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
-                    <div class="p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 id="modalTitle" class="text-xl font-semibold">Add New Schedule</h2>
-                            <button onclick="hideScheduleForm()" class="text-gray-400 hover:text-gray-600">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
+            <!-- Afternoon Schedule -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <h2 class="text-lg font-semibold text-gray-900">Afternoon Feed</h2>
+                        <div class="mt-2 space-y-2">
+                            <div class="text-sm text-gray-500">
+                                Daily at 2:00 PM • Afternoon Mix
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span>
+                                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">Group A, B</span>
+                            </div>
                         </div>
-                        <form id="scheduleForm" class="space-y-4">
-                            <input type="hidden" name="scheduleId" id="scheduleId">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Schedule Name</label>
-                                <input type="text" name="scheduleName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Task Type</label>
-                                <div class="mt-2 space-x-4">
-                                    <label class="inline-flex items-center">
-                                        <input type="radio" name="taskType" value="feeding" checked class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" onchange="toggleTaskType()">
-                                        <span class="ml-2 text-sm text-gray-700">Feeding</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="radio" name="taskType" value="pushing" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" onchange="toggleTaskType()">
-                                        <span class="ml-2 text-sm text-gray-700">Feed Pushing</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Animal Group</label>
-                                <select name="group" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="dairy">Dairy Cows</option>
-                                    <option value="bulls">Bulls</option>
-                                    <option value="young">Young Stock</option>
-                                    <option value="all">All Groups</option>
-                                </select>
-                            </div>
-                            <div id="recipeSelect">
-                                <label class="block text-sm font-medium text-gray-700">Feed Recipe</label>
-                                <select name="recipe" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="morning">Morning Mix</option>
-                                    <option value="afternoon">Afternoon Mix</option>
-                                    <option value="evening">Evening Mix</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Time</label>
-                                <input type="time" name="time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Repeat</label>
-                                <select name="repeat" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                    <option value="daily">Daily</option>
-                                    <option value="weekdays">Weekdays</option>
-                                    <option value="weekends">Weekends</option>
-                                    <option value="custom">Custom</option>
-                                </select>
-                            </div>
-                            <div id="customDays" class="hidden">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Select Days</label>
-                                <div class="space-y-2">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="monday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Monday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="tuesday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Tuesday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="wednesday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Wednesday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="thursday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Thursday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="friday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Friday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="saturday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Saturday</label>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="days[]" value="sunday" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                        <label class="ml-2 text-sm text-gray-700">Sunday</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-end space-x-3 mt-6">
-                                <button type="button" onclick="hideScheduleForm()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                    Cancel
-                                </button>
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
-                                    Save Schedule
-                                </button>
-                            </div>
-                        </form>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button onclick="editSchedule('afternoon-feed')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                            Edit
+                        </button>
+                        <button onclick="deleteSchedule('afternoon-feed')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Delete Confirmation Modal -->
-        <div id="deleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
-            <div class="flex items-center justify-center min-h-screen px-4">
-                <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
-                    <div class="p-6">
-                        <div class="mb-4">
-                            <h2 class="text-xl font-semibold text-gray-900">Confirm Delete</h2>
-                            <p class="mt-2 text-sm text-gray-500">Are you sure you want to delete this schedule? This action cannot be undone.</p>
+            <!-- Evening Schedule -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <h2 class="text-lg font-semibold text-gray-900">Evening Feed</h2>
+                        <div class="mt-2 space-y-2">
+                            <div class="text-sm text-gray-500">
+                                Daily at 8:00 PM • Evening Mix
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">Active</span>
+                                <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">All Groups</span>
+                            </div>
                         </div>
-                        <div class="flex justify-end space-x-3">
-                            <button onclick="hideDeleteModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                                Cancel
-                            </button>
-                            <button onclick="confirmDelete()" class="px-4 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600">
-                                Delete
-                            </button>
-                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button onclick="editSchedule('evening-feed')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                            Edit
+                        </button>
+                        <button onclick="deleteSchedule('evening-feed')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -371,42 +168,24 @@
 
     <!-- Mobile Navigation -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 lg:hidden">
-        <nav class="grid grid-cols-6 gap-1 p-2">
+        <nav class="grid grid-cols-3 gap-1 p-2">
             <a href="index.html" class="flex flex-col items-center p-2 text-gray-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
-                <span class="text-xs">Overview</span>
+                <span class="text-xs">Dashboard</span>
             </a>
-            <a href="locations.html" class="flex flex-col items-center p-2 text-gray-600">
+            <a href="settings.html" class="flex flex-col items-center p-2 text-blue-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                 </svg>
-                <span class="text-xs">Locations</span>
+                <span class="text-xs">Settings</span>
             </a>
-            <a href="recipes.html" class="flex flex-col items-center p-2 text-gray-600">
+            <a href="setup.html" class="flex flex-col items-center p-2 text-gray-600">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
                 </svg>
-                <span class="text-xs">Recipes</span>
-            </a>
-            <a href="groups.html" class="flex flex-col items-center p-2 text-gray-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-                <span class="text-xs">Groups</span>
-            </a>
-            <a href="schedules.html" class="flex flex-col items-center p-2 text-blue-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <span class="text-xs">Schedule</span>
-            </a>
-            <a href="monitoring.html" class="flex flex-col items-center p-2 text-gray-600">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                </svg>
-                <span class="text-xs">Monitor</span>
+                <span class="text-xs">Setup</span>
             </a>
         </nav>
     </div>
@@ -414,32 +193,90 @@
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
 
+    <!-- Add/Edit Schedule Modal -->
+    <div id="scheduleModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+            <h2 id="modalTitle" class="text-xl font-semibold mb-4">Add New Schedule</h2>
+            <form id="scheduleForm">
+                <input type="hidden" id="scheduleId" name="scheduleId">
+                <div class="space-y-4">
+                    <div>
+                        <label for="scheduleName" class="block text-sm font-medium text-gray-700">Schedule Name</label>
+                        <input type="text" id="scheduleName" name="scheduleName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="scheduleType" class="block text-sm font-medium text-gray-700">Schedule Type</label>
+                        <select id="scheduleType" name="scheduleType" onchange="toggleRecipeVisibility()" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="feeding">Feeding</option>
+                            <option value="pushing">Feed Pushing</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="scheduleTime" class="block text-sm font-medium text-gray-700">Time</label>
+                        <input type="time" id="scheduleTime" name="scheduleTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="groups" class="block text-sm font-medium text-gray-700">Groups</label>
+                        <select id="groups" name="groups" multiple class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="group-a">Dairy Cows</option>
+                            <option value="group-b">Bulls</option>
+                            <option value="group-c">Young Stock</option>
+                        </select>
+                    </div>
+                    <div id="recipeSection">
+                        <label for="recipe" class="block text-sm font-medium text-gray-700">Recipe</label>
+                        <select id="recipe" name="recipe" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <option value="morning-mix">Morning Mix</option>
+                            <option value="afternoon-mix">Afternoon Mix</option>
+                            <option value="evening-mix">Evening Mix</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="hideScheduleForm()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
+                        Save Schedule
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Delete Schedule</h3>
+            <p class="text-sm text-gray-500 mb-4">Are you sure you want to delete this schedule? This action cannot be undone.</p>
+            <div class="flex justify-end space-x-3">
+                <button onclick="hideDeleteModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button onclick="confirmDelete()" class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed bottom-0 right-0 m-6 p-4 bg-gray-900 text-white rounded-lg shadow-lg transform translate-y-full opacity-0 transition-all duration-300">
+        <p id="notificationText"></p>
+    </div>
+
     <script>
         let currentScheduleId = null;
-
-        function toggleTaskType() {
-            const taskType = document.querySelector('input[name="taskType"]:checked').value;
-            const recipeSelect = document.getElementById('recipeSelect');
-            
-            if (taskType === 'pushing') {
-                recipeSelect.style.display = 'none';
-                recipeSelect.querySelector('select').removeAttribute('required');
-            } else {
-                recipeSelect.style.display = 'block';
-                recipeSelect.querySelector('select').setAttribute('required', 'required');
-            }
-        }
 
         function showScheduleForm(isEdit = false) {
             document.getElementById('modalTitle').textContent = isEdit ? 'Edit Schedule' : 'Add New Schedule';
             document.getElementById('scheduleModal').classList.remove('hidden');
-            toggleTaskType(); // Ensure recipe select visibility is correct
+            toggleRecipeVisibility(); // Initialize recipe visibility based on selected type
         }
 
         function hideScheduleForm() {
             document.getElementById('scheduleModal').classList.add('hidden');
             document.getElementById('scheduleForm').reset();
-            document.getElementById('customDays').classList.add('hidden');
             currentScheduleId = null;
         }
 
@@ -469,15 +306,11 @@
             }
         }
 
-        // Show/hide custom days based on repeat selection
-        document.querySelector('select[name="repeat"]').addEventListener('change', function(e) {
-            const customDays = document.getElementById('customDays');
-            if (e.target.value === 'custom') {
-                customDays.classList.remove('hidden');
-            } else {
-                customDays.classList.add('hidden');
-            }
-        });
+        function toggleRecipeVisibility() {
+            const scheduleType = document.getElementById('scheduleType').value;
+            const recipeSection = document.getElementById('recipeSection');
+            recipeSection.style.display = scheduleType === 'feeding' ? 'block' : 'none';
+        }
 
         document.getElementById('scheduleForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -485,16 +318,26 @@
             const data = {
                 id: formData.get('scheduleId'),
                 name: formData.get('scheduleName'),
-                group: formData.get('group'),
-                recipe: formData.get('recipe'),
-                time: formData.get('time'),
-                repeat: formData.get('repeat'),
-                days: formData.getAll('days[]')
+                type: formData.get('scheduleType'),
+                time: formData.get('scheduleTime'),
+                groups: Array.from(document.getElementById('groups').selectedOptions).map(option => option.value),
+                recipe: formData.get('scheduleType') === 'feeding' ? formData.get('recipe') : null
             };
             console.log('Schedule Data:', data);
             hideScheduleForm();
             showNotification(currentScheduleId ? 'Schedule updated successfully' : 'Schedule created successfully');
         });
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            notificationText.textContent = message;
+            notification.classList.remove('translate-y-full', 'opacity-0');
+            
+            setTimeout(() => {
+                notification.classList.add('translate-y-full', 'opacity-0');
+            }, 3000);
+        }
     </script>
 </body>
 </html> 
