@@ -77,50 +77,50 @@
     <!-- Main Content Area -->
     <main class="container mx-auto px-4 pt-6 pb-24">
         <h1 class="text-2xl font-bold text-gray-900 mb-6">Settings Overview</h1>
-
+        
+        <!-- Explanation Box -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+            <div class="flex space-x-3">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium text-blue-800 mb-1">About Settings</h3>
+                    <p class="text-sm text-blue-700">These are your day-to-day management settings that you'll adjust regularly as your farm's needs change. Here you can update feed recipes when ingredients change, modify schedules based on seasonal requirements, and adjust group settings as your herd composition changes.</p>
+                </div>
+            </div>
+        </div>
+        
         <!-- Settings Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Recipes -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Recipes Box -->
+            <a href="recipes.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
                     <h2 class="text-lg font-semibold text-gray-900">Recipes</h2>
-                    <p class="mt-2 text-sm text-gray-500">Manage feeding recipes and ingredients</p>
-                    <a href="recipes.html" class="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
-                        Configure recipes
-                        <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    <p class="mt-2 text-sm text-gray-500">Manage feeding recipes and ingredients. Adjust ingredient amounts based on nutritional needs and available feed stock.</p>
+                    <div class="mt-4 text-blue-600 hover:text-blue-700">Configure recipes</div>
                 </div>
-            </div>
+            </a>
 
-            <!-- Schedules -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex-1">
+            <!-- Schedules Box -->
+            <a href="schedules.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
                     <h2 class="text-lg font-semibold text-gray-900">Schedules</h2>
-                    <p class="mt-2 text-sm text-gray-500">Configure feeding schedules and timings</p>
-                    <a href="schedules.html" class="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
-                        Configure schedules
-                        <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    <p class="mt-2 text-sm text-gray-500">Configure feeding schedules and timings. Adapt feeding times to match your farm's routine and seasonal changes.</p>
+                    <div class="mt-4 text-blue-600 hover:text-blue-700">Configure schedules</div>
                 </div>
-            </div>
+            </a>
 
-            <!-- Groups -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex-1">
+            <!-- Groups Box -->
+            <a href="groups.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div class="p-6">
                     <h2 class="text-lg font-semibold text-gray-900">Groups</h2>
-                    <p class="mt-2 text-sm text-gray-500">Manage animal groups and assignments</p>
-                    <a href="groups.html" class="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
-                        Configure groups
-                        <svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    <p class="mt-2 text-sm text-gray-500">Manage animal groups and assignments. Update group sizes and locations as your herd composition changes.</p>
+                    <div class="mt-4 text-blue-600 hover:text-blue-700">Configure groups</div>
                 </div>
-            </div>
+            </a>
         </div>
     </main>
 
