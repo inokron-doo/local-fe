@@ -75,89 +75,295 @@
     </div>
 
     <!-- Main Content Area -->
-    <main class="container mx-auto px-4 pt-6 pb-24">
-        <!-- Ingredients Header -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-900">Feed Ingredients</h1>
-            <button onclick="showIngredientForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                Add New Ingredient
-            </button>
+    <main class="container mx-auto px-4 pt-6 pb-24" x-data="dispensers">
+        <!-- Tab Buttons -->
+        <div class="border-b border-gray-200 mb-6">
+            <div class="flex space-x-8">
+                <button onclick="switchTab('ingredients')" class="tab-button px-1 py-4 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700">
+                    Ingredients
+                </button>
+                <button onclick="switchTab('dispensers')" class="tab-button active px-1 py-4 text-sm font-medium border-b-2 border-blue-500 text-blue-600">
+                    Dispensers
+                </button>
+            </div>
         </div>
 
-        <!-- Ingredients List -->
-        <div class="grid grid-cols-1 gap-6">
-            <!-- Corn Silage -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <h2 class="text-lg font-semibold text-gray-900">Corn Silage</h2>
-                        <div class="mt-2 space-y-2">
-                            <div class="text-sm text-gray-500">
-                                Dispenser 1 • 15,000 kg available
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
+        <!-- Ingredients Section -->
+        <div id="ingredients-section" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Feed Ingredients</h1>
+                <button onclick="showIngredientForm()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    Add New Ingredient
+                </button>
+            </div>
+
+            <!-- Ingredients List -->
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Corn Silage -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold text-gray-900">Corn Silage</h2>
+                            <div class="mt-2 space-y-2">
+                                <div class="text-sm text-gray-500">
+                                    Dispenser 1 • 15,000 kg available
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
+                                </div>
                             </div>
                         </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('corn-silage')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('corn-silage')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
                     </div>
-                    <div class="flex space-x-3">
-                        <button onclick="editIngredient('corn-silage')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                            Edit
-                        </button>
-                        <button onclick="deleteIngredient('corn-silage')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                            Delete
-                        </button>
+                </div>
+
+                <!-- Hay -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold text-gray-900">Hay</h2>
+                            <div class="mt-2 space-y-2">
+                                <div class="text-sm text-gray-500">
+                                    Dispenser 2 • 8,000 kg available
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
+                                    <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">Low Stock</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('hay')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('hay')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grain Mix -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold text-gray-900">Grain Mix</h2>
+                            <div class="mt-2 space-y-2">
+                                <div class="text-sm text-gray-500">
+                                    Dispenser 3 • 5,000 kg available
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="editIngredient('grain-mix')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
+                                Edit
+                            </button>
+                            <button onclick="deleteIngredient('grain-mix')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Hay -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <h2 class="text-lg font-semibold text-gray-900">Hay</h2>
-                        <div class="mt-2 space-y-2">
-                            <div class="text-sm text-gray-500">
-                                Dispenser 2 • 8,000 kg available
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
-                                <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full">Low Stock</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex space-x-3">
-                        <button onclick="editIngredient('hay')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                            Edit
-                        </button>
-                        <button onclick="deleteIngredient('hay')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                            Delete
-                        </button>
-                    </div>
-                </div>
+        <!-- Dispensers Section -->
+        <div id="dispensers-section">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Dispenser Setup</h1>
+                <button onclick="startCalibration()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    Start Calibration
+                </button>
             </div>
 
-            <!-- Grain Mix -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex-1">
-                        <h2 class="text-lg font-semibold text-gray-900">Grain Mix</h2>
-                        <div class="mt-2 space-y-2">
-                            <div class="text-sm text-gray-500">
-                                Dispenser 3 • 5,000 kg available
+            <div class="grid grid-cols-2 gap-6">
+                <!-- Weight-Based Dispensers -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Weight-Based Dispensers</h2>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 1</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(0)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-2 py-1 text-xs bg-green-100 text-green-700 rounded-full">In Stock</span>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 2</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(1)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 3</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(2)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 4</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(3)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 5</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(4)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 6</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(5)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex space-x-3">
-                        <button onclick="editIngredient('grain-mix')" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded border border-blue-600">
-                            Edit
-                        </button>
-                        <button onclick="deleteIngredient('grain-mix')" class="px-3 py-2 text-red-600 hover:bg-red-50 rounded border border-red-600">
-                            Delete
-                        </button>
+                </div>
+
+                <!-- Volume-Based Dispensers -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Volume-Based Dispensers</h2>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 7</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(6)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(6, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 8</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(7)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(7, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 9</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(8)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(8, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 10</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(9)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(9, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 11</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(10)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(10, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-sm font-medium">Dispenser 12</span>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked @change="toggleDispenser(11)">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                        <span class="ml-2 text-sm text-gray-600">Active</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <label class="flex items-center gap-2">
+                                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 rounded" onchange="updateSelectedForCalibration(11, this.checked)">
+                                        <span class="text-sm text-gray-600">Select for calibration</span>
+                                    </label>
+                                    <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Needs Cal.</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -273,8 +479,132 @@
         <span id="notificationText"></span>
     </div>
 
+    <!-- Calibration Wizard Modal -->
+    <div id="calibrationModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">Dispenser Calibration</h2>
+                        <button onclick="hideCalibrationModal()" class="text-gray-400 hover:text-gray-600">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Calibration Steps -->
+                    <div class="space-y-6">
+                        <!-- Step 1: Preparation -->
+                        <div id="calibration-step-1">
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Step 1: Preparation</h3>
+                            <p class="text-gray-600 mb-4">Prepare for calibrating Dispenser <span id="current-dispenser">7</span>:</p>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-700">Please follow these steps:</p>
+                                        <ol class="mt-2 text-sm text-blue-700 list-decimal list-inside space-y-1">
+                                            <li>Place an empty bucket on the scale</li>
+                                            <li>Tare/Zero the scale</li>
+                                            <li>Position the bucket under the dispenser</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <button onclick="nextCalibrationStep()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                    Ready to Start
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Dispensing -->
+                        <div id="calibration-step-2" class="hidden">
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Step 2: Dispensing</h3>
+                            <p class="text-gray-600 mb-4">Place the bucket under Dispenser <span id="current-dispenser-2">7</span></p>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <p class="ml-3 text-sm text-blue-700">
+                                        The dispenser will run for exactly 20 seconds. Make sure the bucket is properly positioned to catch all the ingredient.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-center mb-4">
+                                <div id="dispensing-timer" class="text-4xl font-bold text-gray-900 hidden">20</div>
+                            </div>
+                            <div class="flex justify-end space-x-3">
+                                <button onclick="previousCalibrationStep()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Back
+                                </button>
+                                <button id="start-dispensing-btn" onclick="startDispensing()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                    Start Dispensing
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Weight Input -->
+                        <div id="calibration-step-3" class="hidden">
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Step 3: Enter Weight</h3>
+                            <p class="text-gray-600 mb-4">Enter the weight of the dispensed ingredient for Dispenser <span id="current-dispenser-3">7</span>:</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Weight (grams)</label>
+                                    <input type="number" id="dispensed-weight" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" min="0" step="0.1">
+                                </div>
+                                <div class="flex justify-end space-x-3">
+                                    <button onclick="previousCalibrationStep()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                        Back
+                                    </button>
+                                    <button onclick="submitWeight()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                        Submit Weight
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Completion -->
+                        <div id="calibration-step-4" class="hidden">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                <h3 class="mt-2 text-lg font-medium text-gray-900">Calibration Complete!</h3>
+                                <div id="calibration-results" class="mt-2 text-sm text-gray-600"></div>
+                                <div class="mt-4">
+                                    <button onclick="finishCalibration()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                        Done
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let currentIngredientId = null;
+        let dispenserStatus = Array(12).fill(true); // All dispensers active by default
+        let dispenserCalibration = Array(12).fill(null); // Calibration values in g/s
+        let currentStep = 1;
+        let currentDispenser = null;
+        let calibrationTimer = null;
+        let calibrationMode = 'single';
+        let selectedDispensers = [];
+        let currentDispenserIndex = 0;
+        let ingredients = Array(12).fill(null); // Array to store assigned ingredients
+        let selectedForCalibration = Array(12).fill(false);
 
         function showIngredientForm(isEdit = false) {
             document.getElementById('modalTitle').textContent = isEdit ? 'Edit Ingredient' : 'Add New Ingredient';
@@ -326,15 +656,342 @@
             showNotification(currentIngredientId ? 'Ingredient updated successfully' : 'Ingredient created successfully');
         });
 
-        function showNotification(message) {
+        function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
             notificationText.textContent = message;
+            
+            // Add color based on type
+            notification.className = `fixed bottom-0 right-0 m-6 p-4 rounded-lg shadow-lg transform transition-all duration-300 ${
+                type === 'error' ? 'bg-red-500' : 'bg-gray-900'
+            } text-white`;
+            
             notification.classList.remove('translate-y-full', 'opacity-0');
             
             setTimeout(() => {
                 notification.classList.add('translate-y-full', 'opacity-0');
             }, 3000);
+        }
+
+        // Initialize with dispensers tab active
+        document.addEventListener('DOMContentLoaded', function() {
+            switchTab('dispensers');
+        });
+
+        // Tab switching function
+        function switchTab(tab) {
+            // Update button styles
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('border-blue-500', 'text-blue-600');
+                btn.classList.add('border-transparent');
+            });
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('border-blue-500', 'text-blue-600');
+            
+            // Show/hide sections
+            document.getElementById('ingredients-section').classList.toggle('hidden', tab !== 'ingredients');
+            document.getElementById('dispensers-section').classList.toggle('hidden', tab !== 'dispensers');
+        }
+
+        // Dispenser controls
+        function toggleDispenser(index) {
+            dispenserStatus[index] = !dispenserStatus[index];
+            // Here you would normally send this state to the backend
+            showNotification(
+                dispenserStatus[index] 
+                    ? `Dispenser ${index + 1} activated` 
+                    : `Dispenser ${index + 1} deactivated`
+            );
+        }
+
+        // Calibration wizard
+        function hideCalibrationModal() {
+            document.getElementById('calibrationModal').classList.add('hidden');
+            if (calibrationTimer) {
+                clearInterval(calibrationTimer);
+                calibrationTimer = null;
+            }
+        }
+
+        function showCalibrationStep(step) {
+            document.querySelectorAll('[id^="calibration-step-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`calibration-step-${step}`).classList.remove('hidden');
+        }
+
+        function nextCalibrationStep() {
+            if (currentStep === 1 && !canProceedToNextStep()) {
+                showNotification('Please select at least one volume-based dispenser', 'error');
+                return;
+            }
+
+            if (currentStep === 4) {
+                updateCompletionStep();
+            }
+
+            currentStep++;
+            showCalibrationStep(currentStep);
+
+            if (currentStep === 2 && calibrationMode === 'bulk') {
+                currentDispenserIndex = 0;
+                currentDispenser = selectedDispensers[currentDispenserIndex];
+                document.getElementById('current-dispenser').textContent = currentDispenser;
+                document.getElementById('completed-dispenser').textContent = currentDispenser;
+            }
+        }
+
+        function previousCalibrationStep() {
+            currentStep--;
+            showCalibrationStep(currentStep);
+        }
+
+        function startDispensing() {
+            const timerDisplay = document.getElementById('dispensing-timer');
+            const startButton = document.getElementById('start-dispensing-btn');
+            let timeLeft = 20;
+
+            timerDisplay.classList.remove('hidden');
+            startButton.disabled = true;
+            startButton.textContent = 'Dispensing...';
+
+            // Start the dispenser
+            // Here you would normally send a command to start the dispenser
+
+            calibrationTimer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(calibrationTimer);
+                    calibrationTimer = null;
+                    timerDisplay.classList.add('hidden');
+                    startButton.disabled = false;
+                    startButton.textContent = 'Start Dispensing';
+                    nextCalibrationStep();
+                }
+            }, 1000);
+        }
+
+        function completeCalibration() {
+            const weight = parseFloat(document.getElementById('dispensed-weight').value);
+            if (!weight || weight <= 0) {
+                alert('Please enter a valid weight');
+                return;
+            }
+
+            // Calculate flow rate (g/s)
+            const flowRate = (weight / 20).toFixed(2);
+            document.getElementById('flow-rate').textContent = flowRate;
+
+            // Store calibration value
+            if (currentDispenser) {
+                dispenserCalibration[currentDispenser - 1] = flowRate;
+            }
+
+            if (calibrationMode === 'bulk' && currentDispenserIndex < selectedDispensers.length - 1) {
+                // Move to next dispenser in bulk mode
+                currentDispenserIndex++;
+                currentDispenser = selectedDispensers[currentDispenserIndex];
+                document.getElementById('current-dispenser').textContent = currentDispenser;
+                document.getElementById('completed-dispenser').textContent = currentDispenser;
+                document.getElementById('dispensed-weight').value = '';
+                showCalibrationStep(2); // Go back to preparation step
+                showNotification(`Proceeding with Dispenser ${currentDispenser}`);
+            } else {
+                // Complete calibration
+                nextCalibrationStep();
+            }
+        }
+
+        function finishCalibration() {
+            hideCalibrationModal();
+            // Here you would normally send the calibration data to the backend
+        }
+
+        function selectDispenserForCalibration(dispenserNumber) {
+            if (dispenserNumber <= 6 || !dispenserStatus[dispenserNumber - 1]) {
+                return;
+            }
+            currentDispenser = dispenserNumber;
+            document.getElementById('current-dispenser').textContent = dispenserNumber;
+            document.getElementById('completed-dispenser').textContent = dispenserNumber;
+        }
+
+        function setCalibrationMode(mode) {
+            calibrationMode = mode;
+            selectedDispensers = [];
+            currentDispenserIndex = 0;
+        }
+
+        function toggleDispenserSelection(dispenserNumber) {
+            if (dispenserNumber <= 6 || !dispenserStatus[dispenserNumber - 1]) {
+                return;
+            }
+
+            if (calibrationMode === 'single') {
+                selectedDispensers = [dispenserNumber];
+                currentDispenser = dispenserNumber;
+                document.getElementById('current-dispenser').textContent = dispenserNumber;
+                document.getElementById('completed-dispenser').textContent = dispenserNumber;
+            } else {
+                const index = selectedDispensers.indexOf(dispenserNumber);
+                if (index === -1) {
+                    selectedDispensers.push(dispenserNumber);
+                } else {
+                    selectedDispensers.splice(index, 1);
+                }
+                selectedDispensers.sort((a, b) => a - b);
+            }
+        }
+
+        function canProceedToNextStep() {
+            if (calibrationMode === 'single') {
+                return selectedDispensers.length === 1 && selectedDispensers[0] > 6;
+            } else {
+                return selectedDispensers.length > 0 && selectedDispensers.every(d => d > 6);
+            }
+        }
+
+        function updateCompletionStep() {
+            const completionStep = document.getElementById('calibration-step-4');
+            if (calibrationMode === 'bulk') {
+                completionStep.innerHTML = `
+                    <div class="text-center">
+                        <svg class="mx-auto h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <h3 class="mt-2 text-lg font-medium text-gray-900">Bulk Calibration Complete!</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            Successfully calibrated ${selectedDispensers.length} dispensers:<br>
+                            ${selectedDispensers.map(d => `
+                                Dispenser ${d}: ${dispenserCalibration[d-1]} g/s
+                            `).join('<br>')}
+                        </p>
+                        <div class="mt-4">
+                            <button onclick="finishCalibration()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                completionStep.innerHTML = `
+                    <div class="text-center">
+                        <svg class="mx-auto h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <h3 class="mt-2 text-lg font-medium text-gray-900">Calibration Complete!</h3>
+                        <div id="calibration-results" class="mt-2 text-sm text-gray-600"></div>
+                        <div class="mt-4">
+                            <button onclick="finishCalibration()" class="px-4 py-2 bg-blue-500 text-white rounded-md text-sm font-medium hover:bg-blue-600">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function toggleAllDispensers(state) {
+            dispenserStatus = Array(12).fill(state);
+            showNotification(state ? 'All dispensers activated' : 'All dispensers deactivated');
+        }
+
+        function updateSelectedForCalibration(index, checked) {
+            selectedForCalibration[index] = checked;
+        }
+
+        function startCalibration() {
+            // Get selected dispensers
+            const selectedDispenserIndices = selectedForCalibration.reduce((acc, selected, index) => {
+                if (selected) acc.push(index);
+                return acc;
+            }, []);
+
+            // Check if any dispensers are selected
+            if (selectedDispenserIndices.length === 0) {
+                showNotification('Please select at least one dispenser for calibration', 'error');
+                return;
+            }
+
+            // Set up calibration
+            calibrationMode = selectedDispenserIndices.length > 1 ? 'bulk' : 'single';
+            selectedDispensers = selectedDispenserIndices.map(i => i + 1); // Convert to 1-based indices
+            currentDispenserIndex = 0;
+            currentDispenser = selectedDispensers[0];
+
+            // Update dispenser numbers in all steps
+            document.getElementById('current-dispenser').textContent = currentDispenser;
+            document.getElementById('current-dispenser-2').textContent = currentDispenser;
+            document.getElementById('current-dispenser-3').textContent = currentDispenser;
+
+            // Start the calibration wizard at step 1 (preparation)
+            currentStep = 1;
+            showCalibrationStep(1);
+            document.getElementById('calibrationModal').classList.remove('hidden');
+        }
+
+        function submitWeight() {
+            const weight = parseFloat(document.getElementById('dispensed-weight').value);
+            if (isNaN(weight) || weight <= 0) {
+                showNotification('Please enter a valid weight', 'error');
+                return;
+            }
+
+            // Calculate flow rate (g/s)
+            const flowRate = (weight / 20).toFixed(2);
+            dispenserCalibration[currentDispenser - 1] = flowRate;
+
+            if (calibrationMode === 'bulk' && currentDispenserIndex < selectedDispensers.length - 1) {
+                // Move to next dispenser
+                currentDispenserIndex++;
+                currentDispenser = selectedDispensers[currentDispenserIndex];
+                
+                // Update dispenser numbers in all steps
+                document.getElementById('current-dispenser').textContent = currentDispenser;
+                document.getElementById('current-dispenser-2').textContent = currentDispenser;
+                document.getElementById('current-dispenser-3').textContent = currentDispenser;
+                
+                // Reset to step 1 for next dispenser
+                currentStep = 1;
+                showCalibrationStep(1);
+                document.getElementById('dispensed-weight').value = '';
+            } else {
+                // Show completion step
+                updateCalibrationResults();
+                currentStep = 4;
+                showCalibrationStep(4);
+            }
+        }
+
+        function updateCalibrationResults() {
+            const resultsDiv = document.getElementById('calibration-results');
+            if (calibrationMode === 'bulk') {
+                resultsDiv.innerHTML = `
+                    Successfully calibrated ${selectedDispensers.length} dispensers:<br>
+                    ${selectedDispensers.map(d => `
+                        Dispenser ${d}: ${dispenserCalibration[d-1]} g/s
+                    `).join('<br>')}
+                `;
+            } else {
+                resultsDiv.innerHTML = `
+                    Dispenser ${currentDispenser} has been successfully calibrated.<br>
+                    Flow rate: ${dispenserCalibration[currentDispenser-1]} g/s
+                `;
+            }
+        }
+
+        function finishCalibration() {
+            hideCalibrationModal();
+            // Reset calibration checkboxes
+            selectedForCalibration = Array(12).fill(false);
+            // Update UI to show calibrated status
+            selectedDispensers.forEach(d => {
+                const statusSpan = document.querySelector(`#dispenser-${d} .calibration-status`);
+                if (statusSpan) {
+                    statusSpan.textContent = 'Calibrated';
+                    statusSpan.classList.remove('bg-yellow-100', 'text-yellow-700');
+                    statusSpan.classList.add('bg-blue-100', 'text-blue-700');
+                }
+            });
         }
     </script>
 </body>
