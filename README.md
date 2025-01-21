@@ -38,11 +38,31 @@ The interface is accessible at: [https://inokron-doo.github.io/local-fe/index.ht
 
 ### Setup
 - Location Management:
-  - Configure feeding locations
+  - Configure feeding locations with start and end positions
+  - Set up special locations:
+    - Waiting position (single fixed location)
+    - Loading position (start and end positions)
   - Organize locations by sections
+
 - Ingredient Management:
   - Manage available feed ingredients
   - Track ingredient inventory
+  - Configure dispensers:
+    - 6 weight-based dispensers (1-6)
+    - 6 volume-based dispensers (7-12)
+    - Individual dispenser activation/deactivation
+    - Calibration wizard for volume-based dispensers:
+      - Single dispenser calibration
+      - Bulk calibration mode
+      - 20-second dispensing test
+      - Flow rate calculation (g/s)
+      - Calibration status tracking
+
+- Robot Control:
+  - Basic robot commands:
+    - Connect/Disconnect
+    - Reset Board
+    - Factory Reset
 
 ### General Features
 - Responsive design for desktop and mobile
@@ -52,7 +72,7 @@ The interface is accessible at: [https://inokron-doo.github.io/local-fe/index.ht
 - Navigation:
   - Main menu (Dashboard, Settings, Setup)
   - Settings submenu (Recipes, Schedules, Groups)
-  - Setup submenu (Locations, Ingredients)
+  - Setup submenu (Locations, Ingredients, Robot Control)
 
 ## Feedback & Bug Reports
 
