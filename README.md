@@ -60,6 +60,9 @@ The interface is accessible at: [https://inokron-doo.github.io/local-fe/index.ht
 
 - Robot Control:
   - Basic robot commands:
+    - Manual movement controls:
+      - Forward/Reverse movement with press-and-hold functionality
+      - Real-time movement status display
     - Connect/Disconnect
     - Reset Board
     - Factory Reset
