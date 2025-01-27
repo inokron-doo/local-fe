@@ -87,9 +87,22 @@
                 <div class="ml-3">
                     <h3 class="text-sm font-medium text-yellow-800">Important Notice</h3>
                     <div class="mt-2 text-sm text-yellow-700">
-                        <p>The commands on this page directly affect the robot's operation. Some actions may interrupt feeding schedules or require manual intervention. Please proceed with caution.</p>
+                        <p>Please ensure the robot is properly connected before attempting any operations.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Manual Movement Controls -->
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-2">Manual Movement</h2>
+            <p class="text-sm text-gray-600 mb-4">Control robot movement manually using the movement controls.</p>
+            <div class="flex justify-center">
+                <button 
+                    onclick="showMovementModal()"
+                    class="bg-blue-500 text-white px-6 py-4 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center">
+                    Open Movement Controls
+                </button>
             </div>
         </div>
 
@@ -238,8 +251,62 @@
         </div>
     </div>
 
+    <!-- Movement Control Modal -->
+    <div id="movementModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold text-gray-900">Movement Controls</h2>
+                        <button onclick="hideMovementModal()" class="text-gray-400 hover:text-gray-500">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Movement Status -->
+                    <div class="mb-6">
+                        <div class="text-center mb-4">
+                            <span id="movementStatus" class="text-xl font-medium text-gray-700 bg-gray-100 px-4 py-2 rounded-full">Stationary</span>
+                        </div>
+                    </div>
+
+                    <!-- Control Buttons -->
+                    <div class="flex justify-center space-x-4">
+                        <button 
+                            onmousedown="startMoving('forward')" 
+                            onmouseup="stopMoving()" 
+                            onmouseleave="stopMoving()"
+                            ontouchstart="startMoving('forward')"
+                            ontouchend="stopMoving()"
+                            class="bg-blue-500 text-white px-6 py-4 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                            </svg>
+                            <span class="ml-2">Forward</span>
+                        </button>
+                        <button 
+                            onmousedown="startMoving('backward')" 
+                            onmouseup="stopMoving()" 
+                            onmouseleave="stopMoving()"
+                            ontouchstart="startMoving('backward')"
+                            ontouchend="stopMoving()"
+                            class="bg-blue-500 text-white px-6 py-4 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                            </svg>
+                            <span class="ml-2">Reverse</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let currentAction = null;
+        let movementInterval = null;
 
         function showConfirmationModal(message, action) {
             document.getElementById('confirmationMessage').textContent = message;
@@ -293,6 +360,51 @@
             }, 3000);
         }
 
+        function showMovementModal() {
+            document.getElementById('movementModal').classList.remove('hidden');
+        }
+
+        function hideMovementModal() {
+            document.getElementById('movementModal').classList.add('hidden');
+            stopMoving(); // Ensure movement stops when modal is closed
+        }
+
+        function updateGearStick(direction) {
+            const movementStatus = document.getElementById('movementStatus');
+            
+            if (direction === 'forward') {
+                movementStatus.textContent = 'Moving Forward';
+                movementStatus.className = 'text-xl font-medium text-green-600 bg-green-100 px-4 py-2 rounded-full';
+            } else if (direction === 'backward') {
+                movementStatus.textContent = 'Moving Backward';
+                movementStatus.className = 'text-xl font-medium text-blue-600 bg-blue-100 px-4 py-2 rounded-full';
+            } else {
+                movementStatus.textContent = 'Stationary';
+                movementStatus.className = 'text-xl font-medium text-gray-700 bg-gray-100 px-4 py-2 rounded-full';
+            }
+        }
+
+        function startMoving(direction) {
+            if (movementInterval) return;
+
+            const command = direction === 'forward' ? 'move_forward' : 'move_backward';
+            
+            sendCommand(command);
+            updateGearStick(direction);
+            
+            movementInterval = setInterval(() => {
+                sendCommand(command);
+            }, 50);
+        }
+
+        function stopMoving() {
+            if (movementInterval) {
+                clearInterval(movementInterval);
+                movementInterval = null;
+                updateGearStick('none');
+            }
+        }
+
         function sendCommand(command, data = {}) {
             const request = {
                 command: command,
@@ -315,6 +427,12 @@
                     break;
                 case 'set_factory_setting':
                     message = 'Factory settings applied successfully';
+                    break;
+                case 'move_forward':
+                    message = 'Moving forward';
+                    break;
+                case 'move_backward':
+                    message = 'Moving backward';
                     break;
             }
             
